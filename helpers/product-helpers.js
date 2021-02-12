@@ -27,5 +27,12 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+    getProduct:(id)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(id)}).then((response)=>{
+                resolve(response)
+            })
+        })
     }
 }
