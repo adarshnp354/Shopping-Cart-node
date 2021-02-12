@@ -31,7 +31,7 @@ module.exports={
                     }
                 })
             }else{
-                console.log('LOGIN FAILED');
+                // console.log('LOGIN FAILED');
                 resolve({status:false})
             }
 
