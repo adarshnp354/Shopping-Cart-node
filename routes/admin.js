@@ -45,4 +45,9 @@ router.get('/delete-product/:id',(req,res)=>{
     res.redirect('/admin')
   })
 })
+
+router.get('/edit-product/:id',(req,res)=>{
+  let id=req.params.id
+  res.render('admin/edit-product')
+})
 module.exports = router;
