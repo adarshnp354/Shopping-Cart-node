@@ -14,7 +14,7 @@ const verifyLogin=(req,res,next)=>{
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let user = req.session.user
-  console.log(user);
+  // console.log(user);
   productHelpers.getAllProducts().then((pdt)=>{
     // console.log(pdt);
     res.render('user/view-products',{admin:false,pdt,user});
@@ -38,7 +38,8 @@ router.get('/signup',(req,res)=>{
 router.post('/signup',(req,res)=>{
   userHelpers.doSignup(req.body).then((response)=>{
     // console.log(response);
-
+    let user = req.session.user
+  res.redirect('/',{user})
   })
   
 })
