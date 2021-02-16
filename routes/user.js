@@ -38,8 +38,9 @@ router.get('/signup',(req,res)=>{
 router.post('/signup',(req,res)=>{
   userHelpers.doSignup(req.body).then((response)=>{
     // console.log(response);
-    let user = req.session.user
-  res.render('user/login',{user})
+    req.session.loggedIn=true
+    req.session.user=response
+    res.redirect('/')
   })
   
 })
@@ -71,10 +72,18 @@ router.get('/logout',(req,res)=>{
 //   }  
 // })                     ------------------->>>>>>>>  same purpose with diff func using const for chrcking user is there or not is above with name verifyLogin
 
-router.get('/cart',verifyLogin,(req,res)=>{
+router.get('/cart',verifyLogin,async (req,res)=>{
+let products= await userHelpers.getCartProducts(req.session.user._id)
+console.log(products);
 let user = req.session.user
   res.render('user/cart',{user})
 })
 
+router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
+  userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
+    res.redirect('/')
+  })
+
+})
 
 module.exports = router;
