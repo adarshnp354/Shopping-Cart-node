@@ -28,6 +28,7 @@ router.get('/login',(req,res)=>{
   }else{
     res.render('user/login',{"LoginErr":req.session.loginErr})
     req.session.loginErr=false
+    
   }
 })
 
