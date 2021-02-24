@@ -76,7 +76,7 @@ module.exports={
                             {
                                 $match:{
                                     $expr:{
-                                        $in:['$_id',"$$proList"]
+                                        $in:['$_id','$$proList']
                                     }
                                 }
                             }
