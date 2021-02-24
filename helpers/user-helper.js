@@ -71,7 +71,7 @@ module.exports={
                 {
                     $lookup:{
                         from:collection.PRODUCT_COLLECTION,
-                        let:{proList:'products'},
+                        let:{proList:'$products'},
                         pipeline:[
                             {
                                 $match:{
